@@ -18,6 +18,7 @@ import androidx.navigation.compose.rememberNavController
 import com.github.mymagicapp.data.viewModel.ViewModel
 import com.github.mymagicapp.ui.AnimalTestScreen
 import com.github.mymagicapp.ui.HomeScreen
+import com.github.mymagicapp.ui.HoroscopeScreen
 import com.github.mymagicapp.ui.navigation.Screen
 import com.github.mymagicapp.ui.theme.MyMagicAppTheme
 
@@ -61,7 +62,10 @@ fun AppNavigation(viewModel: ViewModel) {
 
         // HOROSCOPE SCREEN
         composable(Screen.Horoscope.route) {
-            Text("Pantalla de Horoscopo")
+            HoroscopeScreen(
+                viewModel = viewModel,
+                onBackClick = { navController.popBackStack() }
+            )
         }
 
         // PALM READING SCREEN
