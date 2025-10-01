@@ -11,42 +11,63 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.github.mymagicapp.data.viewModel.ViewModel
+import com.github.mymagicapp.ui.AnimalTestScreen
+import com.github.mymagicapp.ui.HomeScreen
+import com.github.mymagicapp.ui.navigation.Screen
 import com.github.mymagicapp.ui.theme.MyMagicAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             MyMagicAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                val viewModel: ViewModel = viewModel()
+                AppNavigation(viewModel = viewModel)
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun AppNavigation(viewModel: ViewModel) {
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = Screen.Home.route) {
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyMagicAppTheme {
-        Greeting("Android")
+        // HOMESCREEN
+        composable(Screen.Home.route) {
+            HomeScreen(
+                viewModel = viewModel,
+                onStartTestClick = { navController.navigate(Screen.AnimalTest.route) },
+                onHoroscopeClick = { navController.navigate(Screen.Horoscope.route) },
+                onPalmReadingClick = { navController.navigate(Screen.PalmReading.route) }
+            )
+        }
+
+        // ANIMAL TEST SCREEN
+        composable(Screen.AnimalTest.route) {
+            AnimalTestScreen(
+                viewModel = viewModel,
+                onBackClick = { navController.popBackStack() },
+                onFinishTest = {
+                    navController.popBackStack(Screen.Home.route, inclusive = false)
+                }
+            )
+        }
+
+        // HOROSCOPE SCREEN
+        composable(Screen.Horoscope.route) {
+            Text("Pantalla de Horoscopo")
+        }
+
+        // PALM READING SCREEN
+        composable(Screen.PalmReading.route) {
+            Text("Pantala de Lectura de Mano ")
+        }
     }
-}
 
-@Composable
-fun Example(){
-    Text("Sil")
 }
