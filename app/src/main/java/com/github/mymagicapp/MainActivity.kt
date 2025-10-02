@@ -15,10 +15,12 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.github.mymagicapp.data.viewModel.PalmReadingViewModel
 import com.github.mymagicapp.data.viewModel.ViewModel
 import com.github.mymagicapp.ui.AnimalTestScreen
 import com.github.mymagicapp.ui.HomeScreen
 import com.github.mymagicapp.ui.HoroscopeScreen
+import com.github.mymagicapp.ui.PalmReadingScreen
 import com.github.mymagicapp.ui.navigation.Screen
 import com.github.mymagicapp.ui.theme.MyMagicAppTheme
 
@@ -27,22 +29,26 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyMagicAppTheme {
-                val viewModel: ViewModel = viewModel()
-                AppNavigation(viewModel = viewModel)
+                val mainViewModel: ViewModel = viewModel()
+                val palmViewModel: PalmReadingViewModel = viewModel()
+
+                AppNavigation(
+                    mainViewModel = mainViewModel,
+                    palmReadingViewModel = palmViewModel
+                )
             }
         }
     }
 }
 
 @Composable
-fun AppNavigation(viewModel: ViewModel) {
-    val navController = rememberNavController()
+fun AppNavigation(mainViewModel: ViewModel, palmReadingViewModel: PalmReadingViewModel) {    val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Screen.Home.route) {
 
         // HOMESCREEN
         composable(Screen.Home.route) {
             HomeScreen(
-                viewModel = viewModel,
+                viewModel = mainViewModel,
                 onStartTestClick = { navController.navigate(Screen.AnimalTest.route) },
                 onHoroscopeClick = { navController.navigate(Screen.Horoscope.route) },
                 onPalmReadingClick = { navController.navigate(Screen.PalmReading.route) }
@@ -52,7 +58,7 @@ fun AppNavigation(viewModel: ViewModel) {
         // ANIMAL TEST SCREEN
         composable(Screen.AnimalTest.route) {
             AnimalTestScreen(
-                viewModel = viewModel,
+                viewModel = mainViewModel,
                 onBackClick = { navController.popBackStack() },
                 onFinishTest = {
                     navController.popBackStack(Screen.Home.route, inclusive = false)
@@ -63,14 +69,17 @@ fun AppNavigation(viewModel: ViewModel) {
         // HOROSCOPE SCREEN
         composable(Screen.Horoscope.route) {
             HoroscopeScreen(
-                viewModel = viewModel,
+                viewModel = mainViewModel,
                 onBackClick = { navController.popBackStack() }
             )
         }
 
         // PALM READING SCREEN
         composable(Screen.PalmReading.route) {
-            Text("Pantala de Lectura de Mano ")
+            PalmReadingScreen(
+                onBackClick = { navController.popBackStack() },
+                palmReadingViewModel = palmReadingViewModel
+            )
         }
     }
 
