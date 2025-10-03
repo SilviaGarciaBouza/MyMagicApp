@@ -72,7 +72,7 @@ fun SignSelectionGrid(
         contentPadding = PaddingValues(4.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.heightIn(max = 250.dp)
+        modifier = Modifier.heightIn(max = 500.dp)
     ) {
         items(ZodiacSign.entries.toTypedArray()) { sign ->
             val isSelected = sign == selectedSign

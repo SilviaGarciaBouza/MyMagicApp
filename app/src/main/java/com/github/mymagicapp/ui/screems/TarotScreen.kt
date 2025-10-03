@@ -80,7 +80,7 @@ fun TarotScreen(
                 rotationY = rotation
             }
                 .clickable {
-                    myImageCardTap = !myImageCardTap
+                    myImageCardTap = false//!myImageCardTap
                 }) {
 
 
@@ -99,7 +99,7 @@ fun TarotScreen(
                 rotationY = rotation2
             }
                 .clickable {
-                    myImageCardTap2 = !myImageCardTap2
+                    myImageCardTap2 = false
                 }) {
 
 
@@ -119,7 +119,7 @@ fun TarotScreen(
                 rotationY = rotation3
             }
                 .clickable {
-                    myImageCardTap3 = !myImageCardTap3
+                    myImageCardTap3 =false //!myImageCardTap3
                 }) {
 
 
