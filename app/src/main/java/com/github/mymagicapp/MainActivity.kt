@@ -9,12 +9,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.github.mymagicapp.data.viewModel.PalmReadingViewModel
+import com.github.mymagicapp.data.viewModel.TarotViewModel
 import com.github.mymagicapp.data.viewModel.ViewModel
 import com.github.mymagicapp.ui.screems.AnimalTestScreen
 import com.github.mymagicapp.ui.screems.HomeScreen
 import com.github.mymagicapp.ui.screems.HoroscopeScreen
 import com.github.mymagicapp.ui.PalmReadingScreen
 import com.github.mymagicapp.ui.navigation.Screen
+import com.github.mymagicapp.ui.screems.TarotScreen
 import com.github.mymagicapp.ui.theme.MyMagicAppTheme
 
 
@@ -30,10 +32,12 @@ class MainActivity : ComponentActivity() {
             MyMagicAppTheme {
                 val mainViewModel: ViewModel = viewModel()
                 val palmViewModel: PalmReadingViewModel = viewModel()
+                val tarotViewModel: TarotViewModel= viewModel()
 
                 AppNavigation(
                     mainViewModel = mainViewModel,
-                    palmReadingViewModel = palmViewModel
+                    palmReadingViewModel = palmViewModel,
+                    tarotViewModel = tarotViewModel
                 )
             }
         }
@@ -41,7 +45,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun AppNavigation(mainViewModel: ViewModel, palmReadingViewModel: PalmReadingViewModel) {
+fun AppNavigation(mainViewModel: ViewModel, palmReadingViewModel: PalmReadingViewModel, tarotViewModel: TarotViewModel) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Screen.Home.route) {
 
@@ -79,6 +83,13 @@ fun AppNavigation(mainViewModel: ViewModel, palmReadingViewModel: PalmReadingVie
             PalmReadingScreen(
                 palmReadingViewModel = palmReadingViewModel,
                 onBackClick = { navController.popBackStack() },
+            )
+        }
+        //taROT SREEN
+        composable(Screen.Tarot.route){
+            TarotScreen(
+                tarotViewModel = tarotViewModel,
+                onBackClick = { navController.popBackStack() }
             )
         }
     }
