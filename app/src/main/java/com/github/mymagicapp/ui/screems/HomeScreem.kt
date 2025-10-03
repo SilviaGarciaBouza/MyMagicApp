@@ -1,4 +1,4 @@
-package com.github.mymagicapp.ui
+package com.github.mymagicapp.ui.screems
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -13,6 +13,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import com.github.mymagicapp.data.Animal
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -62,7 +63,7 @@ fun HomeScreen(
 }
 
 @Composable
-fun AnimalStatus(animal: com.github.mymagicapp.data.Animal?, onStartTestClick: () -> Unit) {
+fun AnimalStatus(animal: Animal?, onStartTestClick: () -> Unit) {
     Card(modifier = Modifier.fillMaxWidth()) {
         Column(
             modifier = Modifier.padding(16.dp),

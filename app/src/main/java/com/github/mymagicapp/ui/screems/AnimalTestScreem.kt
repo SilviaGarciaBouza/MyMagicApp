@@ -1,4 +1,4 @@
-package com.github.mymagicapp.ui
+package com.github.mymagicapp.ui.screems
 
 
 import androidx.compose.foundation.layout.*
