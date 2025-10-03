@@ -1,4 +1,6 @@
 package com.github.mymagicapp.data.viewModel
 
-class TarotViewModel {
+import android.view.View
+
+class TarotViewModel: ViewModel() {
 }

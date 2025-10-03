@@ -11,7 +11,7 @@ import com.github.mymagicapp.data.animalTestQuestions
 import com.github.mymagicapp.data.calculateSpiritAnimal
 import com.github.mymagicapp.data.gethoroscopReadingRandon
 
-class ViewModel: ViewModel() {
+open class ViewModel: ViewModel() {
 
 
     // ANIMAL ESPIRITUAL

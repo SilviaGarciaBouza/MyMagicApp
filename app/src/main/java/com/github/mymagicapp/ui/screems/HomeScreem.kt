@@ -21,7 +21,8 @@ fun HomeScreen(
     viewModel: ViewModel,
     onStartTestClick: () -> Unit,
     onHoroscopeClick: () -> Unit,
-    onPalmReadingClick: () -> Unit
+    onPalmReadingClick: () -> Unit,
+    onTarotClick:() -> Unit
 ) {
     Scaffold(topBar = { TopAppBar(title = { Text("My Magic App") }) }) { padding ->
         Column(
@@ -45,6 +46,12 @@ fun HomeScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
+                Button(
+                    onClick = onTarotClick,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Tarot")
+                }
                 Button(
                     onClick = onHoroscopeClick,
                     modifier = Modifier.fillMaxWidth()

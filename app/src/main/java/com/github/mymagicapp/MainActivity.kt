@@ -55,7 +55,8 @@ fun AppNavigation(mainViewModel: ViewModel, palmReadingViewModel: PalmReadingVie
                 viewModel = mainViewModel,
                 onStartTestClick = { navController.navigate(Screen.AnimalTest.route) },
                 onHoroscopeClick = { navController.navigate(Screen.Horoscope.route) },
-                onPalmReadingClick = { navController.navigate(Screen.PalmReading.route) }
+                onPalmReadingClick = { navController.navigate(Screen.PalmReading.route) },
+                onTarotClick = {navController.navigate(Screen.Tarot.route)}
             )
         }
 
