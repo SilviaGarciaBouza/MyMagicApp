@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -11,11 +12,18 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.input.InputTransformation.Companion.keyboardOptions
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -31,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.github.mymagicapp.ui.theme.MyMagicAppTheme
 import androidx.compose.ui.text.input.*
+import androidx.compose.ui.tooling.preview.Preview
 
 
 class MainActivity2 : ComponentActivity(){
@@ -123,6 +132,33 @@ fun MyOutlinedTextField(modifier: Modifier, user:String, onValueChange:(String)-
             "TextField",
             onValueChange = { onValueChange(it.replace("a", "")) })//impide escribir a
 
+    }
+
+}
+@Preview
+@Composable
+fun MyButton(){
+    //enable=false
+    Column {
+        Button(
+            onClick = { /*TODO*/ },
+            shape = RoundedCornerShape(20),
+            modifier = Modifier.padding(10.dp),
+            border = BorderStroke(3.dp, Color.Blue),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Red,
+                contentColor = Color.Blue,
+                disabledContainerColor = Color.Green,
+                disabledContentColor = Color.Red
+            )
+        ) {
+            Text(text = "Pulsa")
+
+        }
+        OutlinedButton(onClick = { /*TODO*/ }) { }
+        TextButton(onClick = {}) {Text(text="Pulsa") }
+        ElevatedButton(onClick = {}) {Text(text="Pulsa") }
+        FilledTonalButton(onClick = {}) { }
     }
 
 }
