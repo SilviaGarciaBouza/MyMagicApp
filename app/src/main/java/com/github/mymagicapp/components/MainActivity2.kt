@@ -2,16 +2,20 @@ package com.github.mymagicapp.components
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.R
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.input.InputTransformation.Companion.keyboardOptions
@@ -31,7 +35,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -162,3 +170,20 @@ fun MyButton(){
     }
 
 }
+
+//@Composable
+//fun MyImage() {
+//    Image(
+//        painter = painterResource(R.drawable.k),
+//        contentDescription = "avatar image profile",
+//        modifier = Modifier
+//            .size(300.dp)
+//            .clip(RoundedCornerShape(percent = 50))
+//            .border(
+//                width = 5.dp,
+//                shape = CircleShape,
+//                brush = Brush.linearGradient(colors=listOf(Color.Blue, Color.Red, Color.Green, Color.Yellow))
+//            ),
+//        contentScale = ContentScale.FillBounds
+//    )
+//}
