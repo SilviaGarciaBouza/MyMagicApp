@@ -1,19 +1,22 @@
 package com.github.mymagicapp.data
 import android.widget.ZoomControls
 import com.github.mymagicapp.R
-enum class ZodiacSign( val nameSign: String, val periodSign: String){
-    ARIES("Aries", "21 Mar - 19 Abr"),
-    TAURO("Tauro", "20 Abr - 20 May"),
-    GEMINIS("Géminis", "21 May - 20 Jun"),
-    CANCER("Cáncer", "21 Jun - 22 Jul"),
-    LEO("Leo", "23 Jul - 22 Ago"),
-    VIRGO("Virgo", "23 Ago - 22 Sep"),
-    LIBRA("Libra", "23 Sep - 22 Oct"),
-    ESCORPIO("Escorpio", "23 Oct - 21 Nov"),
-    SAGITARIO("Sagitario", "22 Nov - 21 Dic"),
-    CAPRICORNIO("Capricornio", "22 Dic - 19 Ene"),
-    ACUARIO("Acuario", "20 Ene - 18 Feb"),
-    PISCIS("Piscis", "19 Feb - 20 Mar")
+enum class ZodiacSign( val nameSign: String, val periodSign: String, val image: Int ){
+    ARIES("Aries", "21 Mar - 19 Abr", R.drawable.aries),
+    TAURO("Tauro", "20 Abr - 20 May", R.drawable.tauro),
+    GEMINIS("Géminis", "21 May - 20 Jun",R.drawable.gemini),
+    CANCER("Cáncer", "21 Jun - 22 Jul",R.drawable.cancer),
+    LEO("Leo", "23 Jul - 22 Ago",R.drawable.leo),
+    VIRGO("Virgo", "23 Ago - 22 Sep",R.drawable.virgo),
+    LIBRA("Libra", "23 Sep - 22 Oct",R.drawable.libra),
+    ESCORPIO("Escorpio", "23 Oct - 21 Nov",R.drawable.escorpio),
+    SAGITARIO("Sagitario", "22 Nov - 21 Dic",R.drawable.sagitari),
+    CAPRICORNIO("Capricornio", "22 Dic - 19 Ene",R.drawable.capri),
+    ACUARIO("Acuario", "20 Ene - 18 Feb",R.drawable.acuaio),
+    PISCIS("Piscis", "19 Feb - 20 Mar",R.drawable.piscis)
+}
+fun getImagehoroscope(sign: ZodiacSign):Int{
+    return  sign.image;
 }
 
 enum class Animal(val nameAnimal:String, val infoAnimal:String, val imageAnimal:Int){

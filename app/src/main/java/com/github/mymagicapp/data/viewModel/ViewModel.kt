@@ -9,6 +9,7 @@ import com.github.mymagicapp.data.Animal
 import com.github.mymagicapp.data.ZodiacSign
 import com.github.mymagicapp.data.animalTestQuestions
 import com.github.mymagicapp.data.calculateSpiritAnimal
+import com.github.mymagicapp.data.getImagehoroscope
 import com.github.mymagicapp.data.gethoroscopReadingRandon
 
 open class ViewModel: ViewModel() {
@@ -63,7 +64,7 @@ open class ViewModel: ViewModel() {
     var sentenceHoroscopeDay by mutableStateOf<String?>(null)
         private set
 
-
+var imageHoroscope by mutableStateOf<Int>(1)
     fun seleccionarSigno(signo: ZodiacSign) {
         signSelected = signo
         generHoroscopOfDay(signo)
@@ -73,7 +74,9 @@ open class ViewModel: ViewModel() {
         sentenceHoroscopeDay = gethoroscopReadingRandon(signo)
     }
 
-
+    private fun getHoroscopImage(signo: ZodiacSign){
+        imageHoroscope= getImagehoroscope(signo)
+    }
 
 
     fun seleccionarAnimal(animal: Animal) {
