@@ -67,4 +67,10 @@ dependencies {
 
 //  manejar permisos
     implementation("com.google.accompanist:accompanist-permissions:0.34.0")
+    //coil para fotos con url
+
+    implementation("io.coil-kt:coil-compose:2.6.0")
+    //Lottie para animaciones
+    val lottieVersion = "6.6.0"
+    implementation("com.airbnb.android:lottie-compose:$lottieVersion")
 }

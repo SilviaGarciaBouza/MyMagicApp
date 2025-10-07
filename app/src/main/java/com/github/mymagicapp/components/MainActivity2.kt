@@ -1,8 +1,10 @@
 package com.github.mymagicapp.components
 
+import android.graphics.drawable.Icon
 import android.os.Bundle
+import android.util.Log
+import com.github.mymagicapp.R
 import androidx.activity.ComponentActivity
-import androidx.activity.R
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
@@ -48,13 +50,15 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.github.mymagicapp.ui.theme.MyMagicAppTheme
 import androidx.compose.ui.text.input.*
 import androidx.compose.ui.tooling.preview.Preview
+import coil.compose.AsyncImage
+import java.lang.Math.log
 
 
-class MainActivity2 : ComponentActivity(){
+class MainActivity2 : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent{
+        setContent {
             MyMagicAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     MyComposable(modifier = Modifier.padding(innerPadding))
@@ -69,36 +73,52 @@ class MainActivity2 : ComponentActivity(){
 @Composable
 fun MyComposable(modifier: Modifier) {
     ConstraintLayout(modifier.fillMaxSize()) {
-        val(boxRed, boxBlue, boxYellow, boxMagenta, boxGreen) = createRefs()
-val barrier = createEndBarrier(boxRed,boxBlue)
-        Box(modifier.size(100.dp).background(Color.Red).constrainAs(boxRed){
-            bottom.linkTo(parent.bottom)
-            end.linkTo(parent.end)
-        })
-        Box(modifier.size(100.dp).background(Color.Cyan)){
-            var n by rememberSaveable {mutableStateOf(0)}
-            Text(text = "Pulsa:${n}", modifier=Modifier.clickable{n+=1})
+        val (boxRed, boxBlue, boxYellow, boxMagenta, boxGreen) = createRefs()
+        val barrier = createEndBarrier(boxRed, boxBlue)
+        Box(
+            modifier
+                .size(100.dp)
+                .background(Color.Red)
+                .constrainAs(boxRed) {
+                    bottom.linkTo(parent.bottom)
+                    end.linkTo(parent.end)
+                })
+        Box(
+            modifier
+                .size(100.dp)
+                .background(Color.Cyan)
+        ) {
+            var n by rememberSaveable { mutableStateOf(0) }
+            Text(text = "Pulsa:${n}", modifier = Modifier.clickable { n += 1 })
         }
-        Box(modifier.size(100.dp).background(Color.Yellow))
-        Box(modifier.size(100.dp).background(Color.Blue))
+        Box(
+            modifier
+                .size(100.dp)
+                .background(Color.Yellow)
+        )
+        Box(
+            modifier
+                .size(100.dp)
+                .background(Color.Blue)
+        )
 
     }
 }
 
 @Composable
-fun MyText(modifier: Modifier){
-    Text(text = "Hola",modifier=modifier)
+fun MyText(modifier: Modifier) {
+    Text(text = "Hola", modifier = modifier)
 }
 
 @Composable
-fun MyTextFieldParent(modifier: Modifier){
+fun MyTextFieldParent(modifier: Modifier) {
     var user by rememberSaveable { mutableStateOf("") }
-    MyTextField(modifier, user){user = it}
+    MyTextField(modifier, user) { user = it }
 
 }
 
 @Composable
-fun MyTextField(modifier: Modifier, user:String, onValueChange:(String)->Unit) {
+fun MyTextField(modifier: Modifier, user: String, onValueChange: (String) -> Unit) {
     Column(modifier) {
         var text by rememberSaveable { mutableStateOf("") }
         TextField(
@@ -116,19 +136,19 @@ fun MyTextField(modifier: Modifier, user:String, onValueChange:(String)->Unit) {
 
 
 @Composable
-fun MyPasswordTextField(value:String, onValueChange:(String)->Unit){
+fun MyPasswordTextField(value: String, onValueChange: (String) -> Unit) {
     var passwordHidden by rememberSaveable { mutableStateOf(false) }
     TextField(
         value = value,
-        onValueChange = {onValueChange(it)},
-   //     keyboardOptions = keyboardOptions(keyboardType = KeyboardType.Password),
-      //  visualTransformation = if (passwordHidden) PasswordVisualTransformation() else VisualTransformation.None,
-      //  trailingIcon = {Text(text = if(passwordHidden) "Mostrar" else "Ocultar", modifier=Modifier.clickable{passwordHidden=!passwordHidden}), modifier=Modifier.clickable{passwordHidden=!passwordHidden})}//se puede poner una imagen...
+        onValueChange = { onValueChange(it) },
+        //     keyboardOptions = keyboardOptions(keyboardType = KeyboardType.Password),
+        //  visualTransformation = if (passwordHidden) PasswordVisualTransformation() else VisualTransformation.None,
+        //  trailingIcon = {Text(text = if(passwordHidden) "Mostrar" else "Ocultar", modifier=Modifier.clickable{passwordHidden=!passwordHidden}), modifier=Modifier.clickable{passwordHidden=!passwordHidden})}//se puede poner una imagen...
     )
 }
 
 @Composable
-fun MyOutlinedTextField(modifier: Modifier, user:String, onValueChange:(String)->Unit) {
+fun MyOutlinedTextField(modifier: Modifier, user: String, onValueChange: (String) -> Unit) {
     Column(modifier) {
         var text by rememberSaveable { mutableStateOf("") }
         OutlinedTextField(
@@ -143,9 +163,10 @@ fun MyOutlinedTextField(modifier: Modifier, user:String, onValueChange:(String)-
     }
 
 }
+
 @Preview
 @Composable
-fun MyButton(){
+fun MyButton() {
     //enable=false
     Column {
         Button(
@@ -164,26 +185,45 @@ fun MyButton(){
 
         }
         OutlinedButton(onClick = { /*TODO*/ }) { }
-        TextButton(onClick = {}) {Text(text="Pulsa") }
-        ElevatedButton(onClick = {}) {Text(text="Pulsa") }
+        TextButton(onClick = {}) { Text(text = "Pulsa") }
+        ElevatedButton(onClick = {}) { Text(text = "Pulsa") }
         FilledTonalButton(onClick = {}) { }
     }
 
 }
 
-//@Composable
-//fun MyImage() {
-//    Image(
-//        painter = painterResource(R.drawable.k),
-//        contentDescription = "avatar image profile",
-//        modifier = Modifier
-//            .size(300.dp)
-//            .clip(RoundedCornerShape(percent = 50))
-//            .border(
-//                width = 5.dp,
-//                shape = CircleShape,
-//                brush = Brush.linearGradient(colors=listOf(Color.Blue, Color.Red, Color.Green, Color.Yellow))
-//            ),
-//        contentScale = ContentScale.FillBounds
-//    )
-//}
+@Composable
+fun MyImage() {
+    Image(
+        painter = painterResource(R.drawable.leo),
+        contentDescription = "avatar image profile",
+        modifier = Modifier
+            .size(300.dp)
+            .clip(RoundedCornerShape(percent = 50))
+            .border(
+                width = 5.dp,
+                shape = CircleShape,
+                brush = Brush.linearGradient(
+                    colors = listOf(
+                        Color.Blue,
+                        Color.Red,
+                        Color.Green,
+                        Color.Yellow
+                    )
+                )
+            ),
+        contentScale = ContentScale.FillBounds
+    )
+}
+
+@Composable
+fun MyNetworkImage() {
+    AsyncImage(model = "https....", contentDescription = null, onError = {
+        Log.i("image","error")
+    })
+
+}
+@Composable
+fun MyIcon(){
+    androidx.compose.material3.Icon(painter = painterResource(id = R.drawable.ic_launcher_foreground), contentDescription = null)
+}
