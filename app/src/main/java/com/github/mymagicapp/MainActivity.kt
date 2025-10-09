@@ -93,6 +93,13 @@ fun AppNavigation(mainViewModel: ViewModel, palmReadingViewModel: PalmReadingVie
                 onBackClick = { navController.popBackStack() }
             )
         }
+        //play animal
+//        composable(Screen.PlayAnimal.route){
+//            PlayAnimal(
+//                tarotViewModel = tarotViewModel,
+//                onBackClick = { navController.popBackStack() }
+//            )
+//        }
     }
 
 }

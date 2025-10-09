@@ -70,6 +70,20 @@ class MainActivity2 : ComponentActivity() {
 }
 
 
+
+
+
+
+@Composable
+fun MyBaseApp(text: String, modifier: Modifier, butononclick: ()-> Unit) {
+    var text2 by rememberSaveable { mutableStateOf("") }
+    Column {
+        Text(text = text)
+        TextField(text2, onValueChange = { text2 = it })
+        Button(onClick =butononclick ) { Text(text = "Pulsa")}
+    }
+}
+
 @Composable
 fun MyComposable(modifier: Modifier) {
     ConstraintLayout(modifier.fillMaxSize()) {
@@ -164,7 +178,7 @@ fun MyOutlinedTextField(modifier: Modifier, user: String, onValueChange: (String
 
 }
 
-@Preview
+
 @Composable
 fun MyButton() {
     //enable=false

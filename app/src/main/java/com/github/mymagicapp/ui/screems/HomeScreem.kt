@@ -11,6 +11,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import com.github.mymagicapp.data.Animal
@@ -48,19 +49,21 @@ fun HomeScreen(
             ) {
                 Button(
                     onClick = onTarotClick,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
+                    modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(Color.Blue
+                    )) {
                     Text("Tarot")
                 }
                 Button(
                     onClick = onHoroscopeClick,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(Color.Blue
+                    )
                 ) {
                     Text("Ver mi Horóscopo")
                 }
                 Button(
                     onClick = onPalmReadingClick,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),colors = ButtonDefaults.buttonColors(Color.Blue
+                    )
                 ) {
                     Text("Leer mi Mano")
                 }
@@ -108,7 +111,8 @@ fun AnimalStatus(animal: Animal?, onStartTestClick: () -> Unit) {
                     style = MaterialTheme.typography.headlineSmall
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                Button(onClick = onStartTestClick) {
+                Button(onClick = onStartTestClick, colors = ButtonDefaults.buttonColors(Color.Blue
+                )) {
                     Text("¡Descubre mi Animal Espiritual!")
                 }
             }
