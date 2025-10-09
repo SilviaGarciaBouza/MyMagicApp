@@ -1,13 +1,9 @@
 package com.github.mymagicapp.ui.screems
 
-import android.R.attr.id
-import android.R.attr.padding
-import android.R.attr.text
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.snapping.SnapPosition
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -38,7 +34,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.github.mymagicapp.R
 import com.github.mymagicapp.data.viewModel.TarotViewModel
-import kotlinx.coroutines.delay
 
 //TODO:emparejar animales spiritles juegs
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,7 +41,7 @@ import kotlinx.coroutines.delay
 fun TarotScreen(
     onBackClick: () -> Unit,
     tarotViewModel: TarotViewModel = viewModel()
-){
+) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -58,83 +53,97 @@ fun TarotScreen(
                 }
             )
         }
-    ){padding->
-        Column(modifier = Modifier.padding(padding), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+    ) { padding ->
+        Column(
+            modifier = Modifier.padding(padding),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             var myImageCardTap by rememberSaveable { mutableStateOf(true) }
             var myImageCardTap2 by rememberSaveable { mutableStateOf(true) }
             var myImageCardTap3 by rememberSaveable { mutableStateOf(true) }
 
-            val rotation by animateFloatAsState(targetValue = if (myImageCardTap) 0f else 180f, animationSpec = tween(durationMillis = 500),)
-            val rotation2 by animateFloatAsState(targetValue = if (myImageCardTap2) 0f else 180f, animationSpec = tween(durationMillis = 500),)
-            val rotation3 by animateFloatAsState(targetValue = if (myImageCardTap3) 0f else 180f, animationSpec = tween(durationMillis = 500),)
+            val rotation by animateFloatAsState(
+                targetValue = if (myImageCardTap) 0f else 180f,
+                animationSpec = tween(durationMillis = 500),
+            )
+            val rotation2 by animateFloatAsState(
+                targetValue = if (myImageCardTap2) 0f else 180f,
+                animationSpec = tween(durationMillis = 500),
+            )
+            val rotation3 by animateFloatAsState(
+                targetValue = if (myImageCardTap3) 0f else 180f,
+                animationSpec = tween(durationMillis = 500),
+            )
 
             val currentImageId = if (rotation <= 90f) R.drawable.lobo else R.drawable.kakapo
             val currentImageId2 = if (rotation2 <= 90f) R.drawable.lobo else R.drawable.kakapo
             val currentImageId3 = if (rotation3 <= 90f) R.drawable.lobo else R.drawable.kakapo
 
 
-            Spacer(modifier = Modifier.height(24.dp).fillMaxWidth())
+            Spacer(modifier = Modifier
+                .height(24.dp)
+                .fillMaxWidth())
 
-            Card(modifier = Modifier.weight(1f).graphicsLayer {
+            Card(modifier = Modifier
+                .weight(1f)
+                .graphicsLayer {
 
-                rotationY = rotation
-            }
+                    rotationY = rotation
+                }
                 .clickable {
                     myImageCardTap = false//!myImageCardTap
                 }) {
 
-
-
                 Image(
-                    painter = painterResource(id=currentImageId),
+                    painter = painterResource(id = currentImageId),
                     contentScale = ContentScale.Fit,
                     contentDescription = "Image primera carta",
                     modifier = Modifier
-
                 )
             }
-            Spacer(modifier = Modifier.height(24.dp).fillMaxWidth())
-            Card(modifier = Modifier.weight(1f).graphicsLayer {
+            Spacer(modifier = Modifier
+                .height(24.dp)
+                .fillMaxWidth())
+            Card(modifier = Modifier
+                .weight(1f)
+                .graphicsLayer {
 
-                rotationY = rotation2
-            }
+                    rotationY = rotation2
+                }
                 .clickable {
                     myImageCardTap2 = false
                 }) {
-
-
-
                 Image(
-                    painter = painterResource(id=currentImageId2),
+                    painter = painterResource(id = currentImageId2),
                     contentScale = ContentScale.Fit,
                     contentDescription = "Image segunda carta",
                     modifier = Modifier
-
                 )
             }
-            Spacer(modifier = Modifier.height(24.dp).fillMaxWidth())
+            Spacer(modifier = Modifier
+                .height(24.dp)
+                .fillMaxWidth())
 
-            Card(modifier = Modifier.weight(1f).graphicsLayer {
+            Card(modifier = Modifier
+                .weight(1f)
+                .graphicsLayer {
 
-                rotationY = rotation3
-            }
+                    rotationY = rotation3
+                }
                 .clickable {
-                    myImageCardTap3 =false //!myImageCardTap3
+                    myImageCardTap3 = false //!myImageCardTap3
                 }) {
-
-
-
                 Image(
-                    painter = painterResource(id=currentImageId3),
+                    painter = painterResource(id = currentImageId3),
                     contentScale = ContentScale.Fit,
                     contentDescription = "Image tercera carta",
                     modifier = Modifier
-
                 )
             }
-            Spacer(modifier = Modifier.height(24.dp).fillMaxWidth())
-
-
+            Spacer(modifier = Modifier
+                .height(24.dp)
+                .fillMaxWidth())
         }
 
     }

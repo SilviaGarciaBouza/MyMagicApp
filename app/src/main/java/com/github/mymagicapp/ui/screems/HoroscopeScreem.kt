@@ -1,6 +1,8 @@
 package com.github.mymagicapp.ui.screems
 
 
+import androidx.compose.animation.scaleIn
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -10,8 +12,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -46,6 +53,7 @@ fun HoroscopeScreen(
 
             //  seleccionar l signo
             SignSelectionGrid(
+                viewModel,
                 selectedSign = viewModel.signSelected,
                 onSignSelected = viewModel::seleccionarSigno
             )
@@ -63,9 +71,12 @@ fun HoroscopeScreen(
 
 @Composable
 fun SignSelectionGrid(
+    viewModel: ViewModel,
     selectedSign: ZodiacSign?,
     onSignSelected: (ZodiacSign) -> Unit
 ) {
+    var image by rememberSaveable { mutableStateOf(0) }
+    image=viewModel.imageHoroscope
     // 12 signos  4 columnas
     LazyVerticalGrid(
         columns = GridCells.Fixed(4),
@@ -86,6 +97,7 @@ fun SignSelectionGrid(
                 ),
                 elevation = CardDefaults.cardElevation(defaultElevation = if (isSelected) 4.dp else 1.dp)
             ) {
+           //     Image(painter = painterResource(), contentDescription = "", Modifier.fillMaxWidth())
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     horizontalAlignment = Alignment.CenterHorizontally,

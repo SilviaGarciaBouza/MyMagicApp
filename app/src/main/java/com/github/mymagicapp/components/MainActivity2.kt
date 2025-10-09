@@ -42,16 +42,11 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
+
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.github.mymagicapp.ui.theme.MyMagicAppTheme
-import androidx.compose.ui.text.input.*
 import androidx.compose.ui.tooling.preview.Preview
-import coil.compose.AsyncImage
-import java.lang.Math.log
 
 
 class MainActivity2 : ComponentActivity() {
@@ -230,13 +225,16 @@ fun MyImage() {
     )
 }
 
-@Composable
-fun MyNetworkImage() {
-    AsyncImage(model = "https....", contentDescription = null, onError = {
-        Log.i("image","error")
-    })
+//@Composable
+//fun MyNetworkImage() {
+//    AsyncImage(model = "https....", contentDescription = null, onError = {
+//        Log.i("image","error")
+//    })
+//
+//}
 
-}
+
+
 @Composable
 fun MyIcon(){
     androidx.compose.material3.Icon(painter = painterResource(id = R.drawable.ic_launcher_foreground), contentDescription = null)
